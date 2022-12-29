@@ -1,0 +1,9 @@
+[submodule "backend"]
+	path = backend
+	url = git@github.com:dvorchuk-d/sturdy_backend_new.git
+[submodule "frontend"]
+	path = frontend
+	url = git@github.com:dvorchuk-d/sturdy-react-storefront-new.git
+[submodule "dashboard"]
+	path = dashboard
+	url = git@github.com:dvorchuk-d/sturdy-dashboard-new.git
