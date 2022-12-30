@@ -44,6 +44,9 @@ services:
     depends_on:
       - api
       # - saleor-app-checkout
+    env_file:
+      - .env
+    
 
   # saleor-app-checkout:
   #   extends:
@@ -58,10 +61,12 @@ services:
     build:
       context: ./dashboard
       dockerfile: ./Dockerfile
+      args:
+        API_URI: ${API_URI}
     env_file:
       - .env
     ports:
-      - "127.0.0.1:${DASHBOARD_PORT}:${DASHBOARD_PORT}"
+      - 127.0.0.1:${DASHBOARD_PORT}:80
     restart: unless-stopped
 
 
@@ -70,7 +75,7 @@ services:
     env_file:
       - .env
     ports:
-      - 127.0.0.1:${POSTGRES_PORT}:${POSTGRES_PORT}
+      - 127.0.0.1:${POSTGRES_PORT}:5432
     restart: unless-stopped
     networks:
       - saleor-backend-tier
@@ -87,7 +92,7 @@ services:
     env_file:
       - .env
     ports:
-      - 127.0.0.1:${REDIS_PORT}:${REDIS_PORT}
+      - 127.0.0.1:${REDIS_LOCAL_PORT}:6379
     restart: unless-stopped
     networks:
       - saleor-backend-tier
